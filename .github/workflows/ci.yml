@@ -22,6 +22,6 @@ jobs:
         run: mvn test
 
       - name: Analyse du code avec SonarCloud
-        uses: SonarSource/sonarqube-scan-action@main
+        uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.API_SONAR_CLOUD }}
