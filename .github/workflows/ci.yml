@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -22,7 +24,7 @@ jobs:
         run: mvn test
 
       - name: Analyse du code avec SonarCloud
-        uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
+          SONAR_HOST_URL: "https://sonarcloud.io"
+        run: mvn sonar:sonar -Dsonar.organization=julienmannechez -Dsonar.projectKey=JulienMannechez_spring-ci-cd-api
