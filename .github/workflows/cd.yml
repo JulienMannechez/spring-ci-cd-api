@@ -38,7 +38,3 @@ jobs:
         run : |
           docker push ${{ secrets.DOCKER_USERNAME }}/spring-ci-cd-api:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/spring-ci-cd-api:${{ github.run_number }}
-
-      - name: Trigger Render Deployment
-        run: | 
-          curl -X POST "https://api.render.com/deploy/srv-${{ secrets.RENDER_ID }}?key=${{ secrets.RENDER_API_KEY }}"
